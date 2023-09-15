@@ -328,7 +328,7 @@ def currentcase():
     
 @app.route('/access',methods=['POST','GET'])
 def access():
-    name= request.args.get('tool')
+    tool= request.args.get('tool')
     if request.method == 'POST':
         
         
