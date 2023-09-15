@@ -328,8 +328,9 @@ def currentcase():
     
 @app.route('/access',methods=['POST','GET'])
 def access():
+    name= request.args.get('tool')
     if request.method == 'POST':
-        tool=request.form['tool']
+        
         
         exis_token = db.child('LegalSathi').child("lawyers").child(lawyer["name"]).child("token").get().val()
         if tool =="docasst":
