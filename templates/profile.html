@@ -8,7 +8,7 @@
   <title>Impact Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- Favicons -->
   <link href="{{url_for('static', filename='assets/img/favicon.png')}}" rel="icon">
   <link href="{{url_for('static', filename='assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
@@ -67,10 +67,10 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="profile.html">Home</a></li>
-          <li><a href="currentcase.html">Current Case</a></li>
-          <li><a href="leaderBoard.html">LeaderBoard</a></li>
-          <li><a href="index.html">Logout</a></li>
+          <li><a href="{{url_for('lawyerprofile')}}">Home</a></li>
+          <li><a href="{{url_for('currentcase')}}">Current Case</a></li>
+          <li><a href="{{url_for('leaderboard')}}">LeaderBoard</a></li>
+          <li><a href="{{url_for('landing')}}">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -80,13 +80,18 @@
     </div>
   </header><!-- End Header -->
   <!-- End Header -->
-
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
   <main id="main">
     <section id="services" class="services sections-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Lawyer Name</h2>
+          <h2>Lawyer Name : {{data.name}}</h2>
           <div class="profile" style="
           display: flex;
           justify-content: space-evenly;">
@@ -182,7 +187,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

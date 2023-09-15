@@ -85,33 +85,78 @@ def lawyer_register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['pass']
-        username = request.form['username']
+       
         fullname = request.form['fullname']
         email = request.form['e-mail']
-        zipcode=request.form['zipcode']
+        rate=int(request.form['cost'])
         phno = request.form['number']
-        address = request.form['fulladdress']
+        address = request.form['city']
         experience = request.form['experience']
         speciality= request.form['Speciality']
         qualification = request.form['qualification']
         bio = request.form['bio']
-        lawyer["is_logged_in"] = True
-        lawyer["email"] = email
-        lawyer["name"] = fullname
         
-        db.child("LegalSathi").child("lawyers").child(fullname).update({'address':address,'email':email,'bio':bio,'experience':experience,'name':fullname,'phone':phno,'qualification':qualification,'speciality':speciality,'token':50,'zipcode':zipcode})
-        db.child("LegalSathi").child("token").update({fullname:50})
-        data=data=db.child("LegalSathi").child("lawyers").child(lawyer["name"]).get()
-        return render_template("profile.html",data=data.val())
-
         
+        try:
+            #Try creating the user account using the provided data
+            auth.create_user_with_email_and_password(email, password)
+            #Login the user
+            law = auth.sign_in_with_email_and_password(email, password)
+            lawyer["is_logged_in"] = True
+            lawyer["email"] = law["email"]
+            lawyer["name"] = fullname
+            lawyer["uid"] = law["localId"]
+            db.child("LegalSathi").child("lawyers").child(fullname).update({'address':address,'email':email,'bio':bio,'experience':experience,'name':fullname,'phone':phno,'qualification':qualification,'speciality':speciality,'token':50,'rate':rate})
+            db.child("LegalSathi").child("token").update({fullname:50})
+            return redirect(url_for('lawyerprofile'))
+        except:
+            #If there is any error, redirect back to login
+            flash("Account not Created")
+            return redirect(url_for('lawyer_register'))
+        
+        
+        
+        
+    else:
+        return render_template('register_lawyer.html')
+    
+@app.route("/lawyer_login",methods=['GET','POST'])
+def lawyer_login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['pass']        
+        fullname = request.form['username']
+        try:
+            law=auth.sign_in_with_email_and_password(email, password)
+            lawyer["is_logged_in"] = True
+            lawyer["email"] = law["email"]
+            lawyer["name"] = fullname
+            flash("Lawyer Logged In Successfully")
+            return redirect(url_for('lawyerprofile'))
+        except:
+            flash("Account not Found Please Register")
+            return redirect("lawyer_login")    
+      
+        
+        
+        
+        
+        
+    else:
+        return render_template("lawyer_login.html")  
 
+    
 
-    return render_template("register_lawyer.html")
-
-@app.route("/clienthome")
+@app.route("/clienthome", methods=["POST","GET"])
 def clientHome():
+    
     return render_template("clientHome.html")
+
+@app.route("/profile", methods=["POST","GET"])
+def lawyerprofile():
+    data=data=db.child("LegalSathi").child("lawyers").child(lawyer["name"]).get()
+    return render_template("profile.html",data=data.val())
+
 
 
 
@@ -130,7 +175,7 @@ def leaderboard():
     
     return render_template("leaderBoard.html",board=zip(name,token))
 
-@app.route("/lawyerfilter")
+@app.route("/lawyerfilter", methods=["POST","GET"])
 def lawyerfilter():
     data=db.child("LegalSathi").child("token").get().val()
     sortedDict = sorted(data.items(), key=lambda x:x[1])
@@ -225,14 +270,14 @@ def lawyerfilter():
                 items.append([name[i],exp,loc])
         return render_template('ClientLawyer.html',items=items)
 
-@app.route("/lawyerdetails")
+@app.route("/lawyerdetails", methods=["POST","GET"])
 def lawyerdetails():
     name= request.args.get('name')
     data=db.child("LegalSathi").child("lawyers").child(name).get().val()
     return render_template("lawyerDetails.html",items=data)
 
          
-@app.route('/casehire', methods=["POST"])
+@app.route('/casehire', methods=["POST","GET"])
 def add_token():
     
     
@@ -264,20 +309,24 @@ def add_token():
         flash("Lawyer: "+name+" is hired for your case")
         return render_template("lawyerDetails.html",show=True,items=data)
              
-@app.route('/currentcase', methods=["POST"])
+@app.route('/currentcase', methods=["POST","GET"])
 def currentcase():
 
     data=db.child('LegalSathi').child("lawyerclient").child(lawyer["name"]).get().val()
-    if len(data)==0:
-        return render_template("curentcase.html",found=False)
+    print(data)
+    if data==None :
+        flash("No Ongoing Cases")
+        return render_template("currentcase.html")
         
     else:
         items=[]
-        for client,details in data.items():
-            items.append([client,details['speciality']])
-        return render_template("curentcase.html",items=items)
+        for details in data:
+            speciality=data=db.child('LegalSathi').child("lawyerclient").child(lawyer["name"]).child(details).child("specialty").get().val()
+            items.append([details,speciality])
+        print(items)
+        return render_template("currentcase.html",items=items)
     
-@app.route('/access',methods=['POST'])
+@app.route('/access',methods=['POST','GET'])
 def access():
     if request.method == 'POST':
         tool=request.form['tool']
@@ -286,7 +335,7 @@ def access():
         if tool =="docasst":
             if exis_token <= 30:
                 flash("You do not have enough tokens to redeem for accessing this tool")
-                return str('subscriptionpage')
+                return redirect(url_for('access'))
             else:
                 assign_token = exis_token-30
                 db.child('LegalSathi').child("lawyers").child(lawyer["name"]).update({"token":assign_token})
@@ -297,15 +346,15 @@ def access():
         elif tool =="docsum":
             if exis_token <= 10:
                 flash("You do not have enough tokens to redeem for accessing the tool")
-                return str('subscriptionpage')
+                return redirect(url_for('access'))
             else:
                 assign_token = exis_token-10
                 db.child('LegalSathi').child("lawyers").child(lawyer["name"]).update({"token":assign_token})
                 return redirect('http://localhost:8502')
         else:
-            return str('subscriptionpage')
+            return redirect(url_for('access'))
     else:
-        return str('subscriptionpage')
+        return render_template("subscription.html")
 
         
     

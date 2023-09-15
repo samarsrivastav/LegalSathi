@@ -287,10 +287,10 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="profile.html">Home</a></li>
-          <li><a href="currentcase.html">Current Case</a></li>
-          <li><a href="leaderBoard.html">LeaderBoard</a></li>
-          <li><a href="index.html">Logout</a></li>
+          <li><a href="{{url_for('lawyerprofile')}}">Home</a></li>
+          <li><a href="{{url_for('currentcase')}}">Current Case</a></li>
+          <li><a href="{{url_for('leaderboard')}}">LeaderBoard</a></li>
+          <li><a href="{{url_for('landing')}}">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -300,14 +300,14 @@
     </div>
   </header><!-- End Header -->
   <!-- End Header -->
-  <main>
+  <main style="height: auto;">
     <div id="header">
       <h1>Token LeaderBoard</h1>
       <button class="share">
         <i class="bi bi-award"></i>
       </button>
     </div>
-    <div id="leaderboard">
+    <div id="leaderboard" >
       <div class="ribbon"></div>
       {% set i=1 %}
       <table>
