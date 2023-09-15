@@ -173,7 +173,7 @@ def leaderboard():
           token.append(f[1])
           
     
-    return render_template("leaderBoard.html",board=zip(name,token))
+    return render_template("leaderBoard.html",board=zip(name,token),lawyer=lawyer['name'])
 
 @app.route("/lawyerfilter", methods=["POST","GET"])
 def lawyerfilter():

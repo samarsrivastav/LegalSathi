@@ -315,8 +315,11 @@
         {% for name,token in board %}
         <tr>
           <td class="number">{{loop.index}}</td>
-          
+          {% if name|string() == lawyer|string() %}
+          <td class="name"><h4><b>{{name}}</b></h4></td>
+          {% else %}
           <td class="name">{{name}}</td>
+          {% endif %}
           <td class="points">
             {{token}}
             {% if loop.index ==1 %}

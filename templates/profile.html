@@ -96,12 +96,12 @@
           <div class="profile" style="
           display: flex;
           justify-content: space-evenly;">
-          <img src="assets/img/about-2.jpg" alt="" style="height: 200px;">
+          <img src="{{url_for('static',filename='assets/img/about-2.jpg')}}" alt="" style="height: 200px;">
           <div class="s-details">
             <h3>Token count :<span>{{data.token}}</span></h2>
             <p>Specality :<span>{{data.speciality}}</span></p>
           <p>Rating :<span>4/5</span></p>
-          <p>Hourly Rate :<span>{{data.rate}}</span></p>
+          <p>Hourly Rate :<span>Rs.{{data.rate}}</span></p>
           </div>
         </div>
           
