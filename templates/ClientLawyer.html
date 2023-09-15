@@ -108,20 +108,20 @@
             omnis tiledo stran delop</p>
           <section class="lawyerscard">
             <div class="container">
-              <form method="post" novalidate="novalidate">
+              <form action="/lawyerfilter" method="post" novalidate="novalidate">
 
                 <div class="row">
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="experience">Experience</label>
-                      <select name="experience" class="form-control">
+                      <label for="rate">Rate</label>
+                      <select name="rate" class="form-control">
                         <option value="none" selected>Choose...</option>
-                        <option value="1-5 years">1-5 years</option>
-                        <option value="6-10 years">6-10 years</option>
-                        <option value="11-15 years">11-15 years</option>
-                        <option value="16-20 years">16-20 years</option>
-                        <option value="Most Senior">Most Senior</option>
+                        <option value="100">Below 100</option>
+                        <option value="500">Below 500</option>
+                        <option value="1000">Below 1000</option>
+                        <option value="2000">Below 2000</option>
+                        <option value="10000">Below 10000</option>
                       </select>
                     </div>
                   </div>
@@ -130,20 +130,20 @@
                       <label for="speciality">Speciality</label>
                       <select name="speciality" class="form-control">
                         <option value="none" selected>Choose...</option>
-                        <option value="Criminal law">Criminal law</option>
-                        <option value="Civil law">Civil law</option>
+                        <option value="Criminal">Criminal law</option>
+                        <option value="Civil">Civil law</option>
                         <option value="Writ Jurisdiction">Writ Jurisdiction</option>
-                        <option value="Company law">Company law</option>
-                        <option value="Contract law">Contract law</option>
-                        <option value="Commercial law">Commercial law</option>
-                        <option value="Construction law">Construction law</option>
-                        <option value="IT law">IT law</option>
-                        <option value="Family law">Family law</option>
-                        <option value="Religious law">Religious law</option>
-                        <option value="Investment law">Investment law</option>
-                        <option value="Labour law">Labour law</option>
-                        <option value="Property law">Property law</option>
-                        <option value="Taxation law">Taxation law</option>
+                        <option value="Company">Company law</option>
+                        <option value="Contract">Contract law</option>
+                        <option value="Commercial">Commercial law</option>
+                        <option value="Construction">Construction law</option>
+                        <option value="IT">IT law</option>
+                        <option value="Family">Family law</option>
+                        <option value="Religious">Religious law</option>
+                        <option value="Investment">Investment law</option>
+                        <option value="Labour">Labour law</option>
+                        <option value="Property">Property law</option>
+                        <option value="Taxation">Taxation law</option>
 
                       </select>
                     </div>
@@ -152,14 +152,19 @@
                     <label for="location">Location</label>
                     <select name="location" class="form-control">
                       <option value="none" selected>Choose...</option>
-                      <option value="Dhaka">Dhaka</option>
-                      <option value="Chittagong">Chittagong</option>
-                      <option value="Sylhet">Sylhet</option>
-                      <option value="Barishal">Barishal</option>
-                      <option value="Khulna">Khulna</option>
-                      <option value="Mymensingh">Mymensingh</option>
-                      <option value="Rajshahi">Rajshahi</option>
-                      <option value="Rangpur"></option>
+                      <option value="patna">Patna</option>
+              <option value="delhi">Delhi</option>
+              <option value="mumbai" >Mumbai</option>
+              <option value="lucknow" >Lucknow</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="jaipur">Jaipur</option>
+              <option value="chandigarh">Chandigarh</option>
+              <option value="chennai">Chennai</option>
+              <option value="kerela">Kerela</option>
+              <option value="hyderabad">Hyderabad</option>
+              <option value="ranchi">Ranchi</option>
+              <option value="gujrat">Gujrat</option>
+              <option value="bhuwaneshwar">Bhubaneshwar</option>
                     </select>
                   </div>
                 </div>
@@ -203,8 +208,8 @@
 
   </main><!-- End #main -->
 
-   <!-- ======= Footer ======= -->
-   <footer id="footer" class="footer">
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
 
     <div class="container">
       <div class="row gy-4">
@@ -212,7 +217,8 @@
           <a href="index.html" class="logo d-flex align-items-center">
             <span>Impact</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta
+            donna mare fermentum iaculis eu non diam phasellus.</p>
           <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -235,21 +241,20 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Schedule Consultations</a></li>
-            <li><a href="#">Right Legal Expertise</a></li>
-            <li><a href="#">Tokenization</a></li>
-            <li><a href="#">24/7 Support</a></li>
-            <li><a href="#">Probono cases
-            </a></li>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            JP nagar <br>
-            KS layout, Blr 560078<br>
-            India <br><br>
+            A108 Adam Street <br>
+            New York, NY 535022<br>
+            United States <br><br>
             <strong>Phone:</strong> +1 5589 55488 55<br>
             <strong>Email:</strong> info@example.com<br>
           </p>
