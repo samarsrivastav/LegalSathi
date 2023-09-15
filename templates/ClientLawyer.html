@@ -116,7 +116,7 @@
                     <div class="form-group">
                       <label for="rate">Rate</label>
                       <select name="rate" class="form-control">
-                        <option value="none" selected>Choose...</option>
+                        <option value="20000" selected>Choose...</option>
                         <option value="100">Below 100</option>
                         <option value="500">Below 500</option>
                         <option value="1000">Below 1000</option>
@@ -191,8 +191,8 @@
               <i class="bi bi-person-fill"></i>
             </div>
             <h3>{{data[0]}}</h3>
-            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis
-              tempore et consequatur.</p>
+            <h6>Rate Per Hour:Rs.{{data[1]}}</h6>
+            <h6>Location:{{data[2]}}</h6>
             <a href="/lawyerdetails?name={{data[0]}}" class="readmore stretched-link">Read more <i
                 class="bi bi-arrow-right"></i></a>
           </div>
