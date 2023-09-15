@@ -65,11 +65,11 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="profile.html">Home</a></li>
-          <li><a href="currentcase.html">Current Case</a></li>
-          <li><a href="leaderBoard.html">LeaderBoard</a></li>
-          <li><a href="subscription.html">Redeem</a></li>
-          <li><a href="index.html">Logout</a></li>
+          <li><a href="{{url_for('lawyerprofile')}}">Home</a></li>
+          <li><a href="{{url_for('currentcase')}}">Current Case</a></li>
+          <li><a href="{{url_for('access')}}">Subscription</a></li>
+          <li><a href="{{url_for('leaderboard')}}">LeaderBoard</a></li>
+          <li><a href="{{url_for('landing')}}">Logout</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Register</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="register_client.html">Client</a></li>
@@ -99,7 +99,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Doccument Assistant</h2>
+
+          <h2>Document Assistant</h2>
           <p>Access our Ai based Chat bots</p>
         </div>
 
@@ -112,7 +113,9 @@
               </div>
               <h3>Document Summarizer</h3>
               <p>Use <strong>10 tokens</strong>to access Ai based Document Summarizer.</p>
-              <a href="/access?tool=docsum" class="readmore stretched-link">Access <i class="bi bi-arrow-right"></i></a>
+              <form action="/access?tool=docsum" method="post">
+              <button type="submit" class="readmore stretched-link">Access <i class="bi bi-arrow-right"></i></button>
+            </form>
             </div>
           </div><!-- End Service Item -->
 
@@ -123,7 +126,9 @@
               </div>
               <h3>Document Assistant</h3>
               <p>Use <strong>30 tokens</strong> to access Ai based Document Assistant for your help.</p>
-              <a href="/access?tool=docasst" class="readmore stretched-link">Access <i class="bi bi-arrow-right"></i></a>
+              <form action="/access?tool=docasst" method="post">
+              <button type="submit" class="readmore stretched-link">Access <i class="bi bi-arrow-right"></i></button>
+            </form>
             </div>
           </div><!-- End Service Item -->
 
