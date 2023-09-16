@@ -108,6 +108,7 @@ def lawyer_register():
             lawyer["uid"] = law["localId"]
             db.child("LegalSathi").child("lawyers").child(fullname).update({'address':address,'email':email,'bio':bio,'experience':experience,'name':fullname,'phone':phno,'qualification':qualification,'speciality':speciality,'token':50,'rate':rate})
             db.child("LegalSathi").child("token").update({fullname:50})
+            flash("Account Created Successfully")
             return redirect(url_for('lawyerprofile'))
         except:
             #If there is any error, redirect back to login
