@@ -361,6 +361,14 @@ def access():
                 assign_token = exis_token-10
                 db.child('LegalSathi').child("lawyers").child(lawyer["name"]).update({"token":assign_token})
                 return redirect('http://localhost:8502')
+        elif tool =="docclass":
+            if exis_token <= 20:
+                flash("You do not have enough tokens to redeem for accessing the tool")
+                return redirect(url_for('access'))
+            else:
+                assign_token = exis_token-20
+                db.child('LegalSathi').child("lawyers").child(lawyer["name"]).update({"token":assign_token})
+                return redirect('http://localhost:8503')
         else:
             return redirect(url_for('access'))
     else:
