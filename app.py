@@ -365,6 +365,14 @@ def access():
             return redirect(url_for('access'))
     else:
         return render_template("subscription.html")
+    
+
+# @app.route('/chat',methods=['POST','GET'])
+# def chat():
+#     if request.method == 'POST':
+#         return redirect('http://localhost:3000')
+        
+    
 
         
     

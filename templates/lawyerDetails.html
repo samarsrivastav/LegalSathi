@@ -62,7 +62,7 @@
   <header id="header" class="header d-flex align-items-center">
 
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{url_for('clientHome')}}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>LegalSaathi<span>.com</span></h1>
@@ -113,8 +113,11 @@
            {% else %}
            <button type="submit" class="btn btn-success">Hire</button>
            {% endif %}
-           <button type="" class="btn btn-primary">Chat</button>
+           
+           
+          
           </form>
+          <a href="http://localhost:3000/login"><button type="submit" class="btn btn-primary">Chat</button></a>
         </div>
       </div>
     </section><!-- End Our Services Section -->
